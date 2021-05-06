@@ -2,7 +2,11 @@ FROM debian:buster
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get install --no-install-recommends --yes \
+RUN apt-get update --fix-missing
+RUN apt-get install software-properties-common -y
+RUN apt-add-repository 'deb http://ftp.hk.debian.org/debian buster main '
+RUN apt-get update
+RUN apt-get install --no-install-recommends --yes \
     apache2 \
     libapache2-mod-php \
     libapache2-mod-wsgi-py3 \
